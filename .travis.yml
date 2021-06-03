@@ -6,3 +6,11 @@ script:
   - docker build -t samsonchu/node .
   - docker images samsonchu/node
 
+before_deploy:
+  - docker login -u samsonchu -p lovedocker
+
+deploy:
+  provider: script
+  script: docker push samsonchu/node
+  on:
+    branch: master
